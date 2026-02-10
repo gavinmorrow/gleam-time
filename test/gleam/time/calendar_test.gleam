@@ -2,25 +2,21 @@ import gleam/float
 import gleam/order
 import gleam/time/calendar
 import gleam/time/duration
-import gleeunit/should
 
 pub fn local_offset_test() {
   let hours =
     float.round(duration.to_seconds(calendar.local_offset())) / 60 / 60
-  should.be_true(hours > -24)
-  should.be_true(hours < 24)
-  should.be_true(calendar.local_offset() == calendar.local_offset())
+  assert hours > -24
+  assert hours < 24
+  assert calendar.local_offset() == calendar.local_offset()
 }
 
 pub fn utc_offset_test() {
-  calendar.utc_offset
-  |> should.equal(duration.seconds(0))
+  assert calendar.utc_offset == duration.seconds(0)
 }
 
 pub fn month_to_string_test() {
-  calendar.April
-  |> calendar.month_to_string
-  |> should.equal("April")
+  assert calendar.month_to_string(calendar.April) == "April"
 }
 
 pub fn is_valid_day_january_test() {
